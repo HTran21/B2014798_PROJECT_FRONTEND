@@ -1,0 +1,86 @@
+.containPage {
+    padding: 20px 30px;
+
+    .titleWeb {
+        color: var(--orange);
+        font-weight: bold;
+    }
+}
+
+.contentPage {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #eae2e24a;
+
+}
+
+.titleIntro {
+    font-weight: bold;
+}
+
+
+
+.btnReadMore {
+    background-image: linear-gradient(to right, var(--orange) 0%, #ffcc33 51%, #ffb347 100%);
+    margin: 30px auto;
+    padding: 15px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.btnReadMore:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+.card {
+    background-color: #ffffff00;
+    border: none;
+    padding: 20px 0px;
+
+    .imageCup {
+
+
+
+
+        img {
+            width: 300px;
+            z-index: 3;
+            position: relative;
+        }
+
+    }
+
+    .imageCup::before {
+        position: absolute;
+        z-index: 0;
+        content: '';
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(#e66465, #9198e5);
+        margin-top: 100px;
+        animation: logo-spin infinite 2s linear;
+    }
+
+    @keyframes logo-spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+}

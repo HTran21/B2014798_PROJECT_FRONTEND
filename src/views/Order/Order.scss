@@ -1,0 +1,113 @@
+.containPage {
+    padding: 20px 30px;
+}
+
+.contentPage {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #eae2e24a;
+}
+
+.infoItem {
+
+    .imageItem {
+        max-width: 70px;
+        height: auto;
+        width: 100%;
+
+    }
+}
+
+.price {
+    font-size: 20px;
+    color: var(--orange);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.quantityItem {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.totalPrice {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.iconMinus {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #6b6363;
+    background-color: #ebdbdba1;
+    transition: 0.5s;
+}
+
+.iconMinus:hover {
+    transform: scale(1.1);
+}
+
+.total {
+    padding: 10px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+
+    .titelTotal {
+        border-bottom: 1px solid rgb(190, 181, 181);
+        font-size: 22px;
+        font-weight: bold;
+        padding: 2px 0px;
+
+    }
+
+    .totalAllPrice {
+        position: relative;
+        font-weight: bold;
+        margin-top: 10px;
+
+        .numberTotal {
+            position: absolute;
+            right: 10px;
+        }
+    }
+
+
+    .btnPay {
+        background-image: linear-gradient(to right, #FF512F 0%, #F09819 51%, #FF512F 100%);
+        margin: 30px 0px;
+        padding: 10px;
+        text-align: center;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .btnPay:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+    }
+
+}

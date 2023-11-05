@@ -8,6 +8,9 @@ import Register from '../views/Register/Register.vue';
 import User from '../views/User/User.vue';
 import EditProfile from '../views/EditProfile/EditProfile.vue';
 
+
+import Test from '../views/Test/Test.vue'
+
 // Layouts
 import AuthLayout from '../layouts/AuthLayout/AuthLayout.vue';
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.vue';
@@ -30,6 +33,14 @@ const routes = [
         path: "/register",
 
         component: Register,
+        meta: {
+            layout: AuthLayout,
+        }
+    },
+    {
+        path: "/test",
+
+        component: Test,
         meta: {
             layout: AuthLayout,
         }

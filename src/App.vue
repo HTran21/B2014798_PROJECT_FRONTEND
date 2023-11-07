@@ -31,6 +31,8 @@
 <script setup>
 import Sidebar from './components/SideBar/SideBar.vue';
 import AppHeader from './components/AppHeader/AppHeader.vue';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 </script>
 
 <style lang="scss">

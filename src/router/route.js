@@ -7,6 +7,7 @@ import Login from '../views/Login/Login.vue';
 import Register from '../views/Register/Register.vue';
 import User from '../views/User/User.vue';
 import EditProfile from '../views/EditProfile/EditProfile.vue';
+import Error from '../views/Error/Error.vue';
 
 
 import Test from '../views/Test/Test.vue'
@@ -14,6 +15,7 @@ import Test from '../views/Test/Test.vue'
 // Layouts
 import AuthLayout from '../layouts/AuthLayout/AuthLayout.vue';
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.vue';
+import ErrorLayout from '../layouts/ErrorLayout/ErrorLayout.vue';
 
 
 // router Admin
@@ -100,6 +102,15 @@ const routes = [
         component: Admin,
         meta: {
             layout: DefaultLayout,
+        }
+    },
+
+    {
+        path: "/:slug",
+
+        component: Error,
+        meta: {
+            layout: ErrorLayout,
         }
     },
 

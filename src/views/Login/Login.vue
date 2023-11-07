@@ -9,7 +9,7 @@
                                 <div class="col-md-6 col-lg-6 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
-                                        <form>
+                                        <form @submit.prevent="login">
 
                                             <div class="d-flex align-items-center mb-3 pb-1">
                                                 <div class="logo">
@@ -22,15 +22,22 @@
                                                 account</div>
 
                                             <div class="group">
-                                                <label for="username"><i class="fa-solid fa-user iconForm"></i></label>
-                                                <input type="email" id="username" class="groupInput" autocomplete="off" />
+                                                <label for="phone"><i class="fa-solid fa-phone iconForm"></i></label>
+                                                <input type="text" id="phone" class="groupInput" v-model="phone"
+                                                    name="phone" autocomplete="off" placeholder="Nhập số diện thoại"
+                                                    required maxlength="10" minlength="9" />
 
                                             </div>
 
-                                            <div class="group">
-                                                <label for="username"><i class="fa-solid fa-lock iconForm"></i></label>
-                                                <input type="email" id="username" class="groupInput" autocomplete="off" />
-
+                                            <div class="group2">
+                                                <label for="password"><i class="fa-solid fa-lock iconForm"></i></label>
+                                                <input :type="showPassword ? 'text' : 'password'" v-model="password"
+                                                    name="password" id="password" class="groupInput" autocomplete="off"
+                                                    placeholder="Nhập mật khẩu" required />
+                                                <div @click="toggleShowPassword" class="iconPassword">
+                                                    <i
+                                                        :class="showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
+                                                </div>
                                             </div>
                                             <div class="pt-1 mb-4">
                                                 <button class="btnPay">Login</button>
@@ -61,7 +68,64 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+import { toast } from 'vue3-toastify';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../../store/userStore';
+
+const userStore = useUserStore();
+
+const router = useRouter();
+
+const phone = ref('');
+const password = ref('');
+const showPassword = ref(false);
+
+const toggleShowPassword = () => {
+    showPassword.value = !showPassword.value;
+};
+
+const login = () => {
+    const formData = {
+        phone: phone.value,
+        password: password.value
+    }
+    axios.post('http://localhost:3000/authentication/login', formData)
+        .then(res => {
+            if (res.data.error) {
+                toast.error(res.data.error)
+            }
+            else {
+                const ID_User = res.data.data._id;
+                const Username = res.data.data.HoTenKH;
+                const Avatar = res.data.data.AnhDaiDien;
+                const isLogin = true;
+
+                localStorage.setItem("ID_User", ID_User);
+                localStorage.setItem("Username", Username);
+                localStorage.setItem("Avatar", Avatar);
+                localStorage.setItem("isLogin", isLogin);
+
+                router.push('/');
+            }
+        })
+}
+
+// const getUserInfo = () => {
+// userStore.id = res.data.data._id
+// userStore.username = res.data.data.HoTenKH
+// userStore.avatar = res.data.data.AnhDaiDien
+
+//     console.log('ID_nguoi dung:', userStore.id);
+//     console.log('Username:', userStore.username);
+//     console.log('Avatar:', userStore.avatar);
+// };
+// const clearUserInfo = () => {
+//     userStore.clearUser();
+// };
+</script>
 
 <style lang="scss" scoped>
 @import './Login.scss';

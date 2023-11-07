@@ -9,7 +9,7 @@
                                 <div class="col-md-6 col-lg-6 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
-                                        <form>
+                                        <form @submit.prevent="register" enctype="multipart/form-data">
 
                                             <div class="d-flex align-items-center mb-3 pb-1">
                                                 <div class="logo">
@@ -21,26 +21,48 @@
                                             <div class="fw-normal pb-2 desLogin">Create an account to use the service</div>
 
                                             <div class="group">
-                                                <label for="username"><i class="fa-solid fa-envelope iconForm"></i></label>
-                                                <input type="email" id="username" class="groupInput" autocomplete="off"
-                                                    placeholder="Nhập email" />
+                                                <label for="phone"><i class="fa-solid fa-phone iconForm"></i></label>
+                                                <input type="text" id="phone" name="phone" class="groupInput"
+                                                    autocomplete="off" v-model="phone" placeholder="Nhập số điện thoại"
+                                                    required />
 
                                             </div>
                                             <div class="group">
                                                 <label for="username"><i class="fa-solid fa-user iconForm"></i></label>
-                                                <input type="email" id="username" class="groupInput" autocomplete="off"
-                                                    placeholder="Nhập Username" />
+                                                <input type="text" id="username" name="username" v-model="username"
+                                                    class="groupInput" autocomplete="off" placeholder="Nhập họ tên"
+                                                    required />
+
+                                            </div>
+
+                                            <div class="group2">
+                                                <label for="password"><i class="fa-solid fa-lock iconForm"></i></label>
+                                                <input :type="showPassword ? 'text' : 'password'" v-model="password"
+                                                    name="password" id="password" class="groupInput" autocomplete="off"
+                                                    placeholder="Nhập mật khẩu" required />
+                                                <div @click="toggleShowPassword" class="iconPassword">
+                                                    <i
+                                                        :class="showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="group">
+                                                <label for="address"><i class="fa-solid fa-map iconForm"></i></label>
+                                                <input type="text" id="address" name="address" v-model="address"
+                                                    class="groupInput" autocomplete="off" placeholder="Nhập địa chỉ"
+                                                    required />
 
                                             </div>
 
                                             <div class="group">
-                                                <label for="username"><i class="fa-solid fa-lock iconForm"></i></label>
-                                                <input type="email" id="username" class="groupInput" autocomplete="off"
-                                                    placeholder="Nhập mật khẩu" />
+                                                <label for="avatar"><i class="fa-solid fa-image iconForm"></i></label>
+                                                <input type="file" id="avatar" class="groupInput" autocomplete="off"
+                                                    name="avatar" accept="image/jpeg, image/png, image/jpg" required
+                                                    ref="imageInput" @change="handlFileUpload" />
 
                                             </div>
                                             <div class="pt-1 mb-4">
-                                                <button class="btnPay">Register</button>
+                                                <button class="btnPay" type="submit">Register</button>
                                             </div>
                                             <p class="mb-1 pb-lg-2" style="color: #393f81;">Do you have an account?
                                                 <router-link to="/login" class="button">
@@ -67,8 +89,63 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import axios from 'axios';
+import { ref } from 'vue';
+import { toast } from 'vue3-toastify';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const phone = ref('');
+const username = ref('');
+const password = ref('');
+const address = ref('');
+const avatar = ref(null);
+
+const showPassword = ref(false);
+
+const toggleShowPassword = () => {
+    showPassword.value = !showPassword.value;
+};
+
+const handlFileUpload = (e) => {
+    avatar.value = e.target.files[0];
+}
+const register = async () => {
+    // const formData = {
+    //     phone: phone.value,
+    //     username: username.value,
+    //     password: password.value,
+    //     address: address.value,
+    // }
+    const formData = new FormData();
+    formData.append('avatar', avatar.value)
+    formData.append('username', username.value)
+    formData.append('phone', phone.value)
+    formData.append('password', password.value)
+    formData.append('address', address.value)
+    axios.post('http://localhost:3000/authentication', formData)
+        .then(res => {
+            console.log("Dang ky thanh cong: ", res.data)
+            if (res.data.error) {
+                toast.error(res.data.error)
+
+            }
+            else {
+                router.push("/login");
+
+                // this.$router.push("/login");
+            }
+        })
+        .catch((err) => console.log(err))
+
+
+
+}
+
+
+</script>
 <style lang="scss" scoped>
 @import './Register.scss';
 </style>

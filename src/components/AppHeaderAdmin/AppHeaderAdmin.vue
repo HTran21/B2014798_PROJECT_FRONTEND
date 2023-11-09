@@ -14,16 +14,13 @@
                 <!-- <div class="btnLogin">Login</div> -->
                 <div v-if="isUserLoggedIn()" class="contentInfo">
                     <img :src="imageUser" class="imageUser" alt="">
-                    <span class="nameUser">
+                    <span class="nameUser ml-1">
                         {{ username }}
                     </span>
-                    <button type="button" class="btnCart">
-                        <i class="fa-solid fa-cart-shopping m-auto"></i>
-                        <span style="opacity: 0.7;"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-                            10
-                        </span>
-                    </button>
+                    <i class="fa-solid fa-user-tie iconHeader"></i>
+                    <span class="nameUser mr-0 ml-1">
+                        {{ position }}
+                    </span>
                 </div>
                 <div v-else>
                     <button class="btnLogin">Đăng nhập</button>
@@ -41,9 +38,10 @@ const isUserLoggedIn = () => {
 
 const username = localStorage.getItem("Username");
 const avatar = localStorage.getItem("Avatar");
+const position = localStorage.getItem("Position");
 const imageUser = `http://localhost:3000/${avatar}`
 </script>
 
 <style lang="scss" scoped>
-@import 'AppHeader.scss';
+@import 'AppHeaderAdmin.scss';
 </style>

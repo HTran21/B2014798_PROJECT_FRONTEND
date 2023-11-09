@@ -16,10 +16,14 @@ import Test from '../views/Test/Test.vue'
 import AuthLayout from '../layouts/AuthLayout/AuthLayout.vue';
 import DefaultLayout from '../layouts/DefaultLayout/DefaultLayout.vue';
 import ErrorLayout from '../layouts/ErrorLayout/ErrorLayout.vue';
+import AdminLayout from '../layouts/AdminLayout/AdminLayout.vue';
 
 
 // router Admin
 import Admin from '../views/Admin/Admin.vue';
+import RegisterAdmin from '../views/RegisterAdmin/RegisterAdmin.vue';
+import LoginAdmin from '../views/LoginAdmin/LoginAdmin.vue';
+import AboutAdmin from '../views/AboutAdmin/AboutAdmin.vue';
 
 const routes = [
     // AuthLayout
@@ -96,15 +100,39 @@ const routes = [
         },
 
     },
+    // router Admin
     {
-        path: "/admin",
+        path: "/admin/home",
 
         component: Admin,
         meta: {
-            layout: DefaultLayout,
+            layout: AdminLayout,
         }
     },
+    {
+        path: "/admin/about",
 
+        component: AboutAdmin,
+        meta: {
+            layout: AdminLayout,
+        }
+    },
+    {
+        path: "/admin/register",
+
+        component: RegisterAdmin,
+        meta: {
+            layout: AuthLayout,
+        }
+    },
+    {
+        path: "/admin/login",
+
+        component: LoginAdmin,
+        meta: {
+            layout: AuthLayout,
+        }
+    },
     {
         path: "/:slug",
 

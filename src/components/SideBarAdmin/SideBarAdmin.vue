@@ -13,11 +13,11 @@
 
         <h3>Menu</h3>
         <div class="menu">
-            <router-link to="/" class="button">
+            <router-link to="/admin/home" class="button">
                 <span class="material-icons"><i class="fa-solid fa-house icon"></i></span>
                 <span class="text">Home</span>
             </router-link>
-            <router-link to="/about" class="button">
+            <router-link to="/admin/about" class="button">
                 <span class="material-icons"><i class="fa-solid fa-bell-concierge"></i></span>
                 <span class="text">Menu</span>
             </router-link>
@@ -83,8 +83,9 @@ const handleOk = () => {
     localStorage.removeItem("Avatar");
     localStorage.removeItem("ID_User");
     localStorage.removeItem("Username");
+    localStorage.removeItem("Position");
     isModal.value = false;
-    router.push('/login');
+    router.push('/admin/login');
 
 }
 
@@ -94,5 +95,5 @@ const handleCancel = () => {
 </script>
 
 <style lang="scss" scoped>
-@import 'SideBar.scss';
+@import 'SideBarAdmin.scss';
 </style>

@@ -25,6 +25,10 @@
         </div>
     </div>
     <button @click="notify">notify by click</button>
+    <button class="btn btn-primary" type="primary" @click="showModal">Mở Modal</button>
+    <a-modal title="Một Modal cơ bản" :visible="isModal" @ok="handleOk" @cancel="handleCancel">
+        <p>Nội dung của Modal</p>
+    </a-modal>
 </template>
   
 <script setup>
@@ -64,4 +68,21 @@ const notify = () => {
     // or
     toast.success('toastify success');
 };
+
+import { Modal, Button } from "ant-design-vue";
+
+// Modal andt vue
+const isModal = ref(false);
+
+const showModal = () => {
+    isModal.value = true;
+}
+
+const handleOk = () => {
+    isModal.value = false;
+}
+
+const handleCancel = () => {
+    isModal.value = false;
+}
 </script>

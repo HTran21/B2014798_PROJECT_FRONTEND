@@ -14,6 +14,8 @@
 
 .image img {
     width: 400px;
+    margin: auto;
+    display: flex;
 }
 
 .textError {

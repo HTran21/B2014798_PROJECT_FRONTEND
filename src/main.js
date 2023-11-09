@@ -13,6 +13,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+
+// Andt vue
+import Andt from 'ant-design-vue'
+import 'ant-design-vue/dist/reset.css';
+
 library.add(fas, far, fab)
 dom.watch();
 
@@ -22,6 +27,7 @@ const pinia = createPinia();
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(pinia);
 app.use(router);
+app.use(Andt)
 
 app.mount('#app');
 

@@ -1,10 +1,10 @@
 <template>
-    <div class="app contentPage">
+    <div class="contentPageError">
         <router-view />
     </div>
 </template>
 <style>
-.contentPage {
+.contentPageError {
     height: 100vh;
     background-color: #c6c0c031;
 }

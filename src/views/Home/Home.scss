@@ -1,10 +1,13 @@
 .containPage {
     padding: 20px 30px;
+    height: 70vh;
 
     .titleWeb {
         color: var(--orange);
         font-weight: bold;
     }
+
+    height: auto;
 }
 
 .contentPage {

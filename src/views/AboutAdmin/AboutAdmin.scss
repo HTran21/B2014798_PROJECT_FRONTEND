@@ -23,52 +23,35 @@
         background-color: #e9e0e02d;
         border-radius: 10px;
         box-shadow: 0px 0px 10px #a5a1a1b3;
-        height: 200px;
+        min-height: 200px;
         width: 310px;
         margin: 10px;
         display: grid;
         grid-template-columns: 120px 180px;
 
         .leftItem {
+
             .imageItem {
-                width: 70px;
-                margin: 10px auto;
+                width: 90px;
                 display: flex;
 
             }
 
-            .numberCup {
-                margin: 30px 10px 10px 10px;
-                display: flex;
-                justify-content: center;
-
-                .btnquantity {
-                    width: 25px;
-                    height: 25px;
-                    margin: auto;
-                    border-radius: 50%;
-                    border: none;
-                    background-color: #c9bdbd;
-                    box-shadow: 0px 3px 5px #a78f8f;
-                    transition: 0.5s;
-                }
-
-                .btnquantity:active {
-                    transform: scale(1.5);
-                }
-
-                .quantity {
-                    width: 40px;
-                    height: 25px;
-                    text-align: center;
-                    background-color: transparent;
-                    border: none;
-                    outline: none;
-                }
+            .quanlityTiem {
+                width: 50px;
+                margin: 5px auto 0 auto;
+                border-radius: 5px;
+                background-color: rgba(242, 132, 64, 0.825);
+                color: #fff;
+                text-align: center;
+                height: 25px;
+                box-shadow: 0px 5px 5px #bbb8b8;
             }
+
         }
 
         .rightItem {
+            position: relative;
 
             .titleItem {
                 font-weight: bold;
@@ -103,18 +86,35 @@
                 background-color: #76cf9f;
             }
 
-            .btnAddToCart {
-                background-color: var(--orange);
-                padding: 5px 15px;
-                border-radius: 20px;
-                margin-top: 20px;
-                width: 100%;
-                color: var(--light);
-                transition: 0.5s;
-            }
+            .actionItem {
+                position: absolute;
+                left: 20%;
+                bottom: 30px;
 
-            .btnAddToCart:active {
-                transform: scale(1.5);
+                .iconEdit {
+                    font-size: 20px;
+                    color: blue;
+                    margin: 0px 10px;
+                    transition: 0.5s;
+                    cursor: pointer;
+                }
+
+                .iconEdit:hover {
+                    transform: scale(1.1);
+                }
+
+                .iconRemove {
+                    font-size: 20px;
+                    color: rgb(213, 12, 12);
+                    transition: 0.5s;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+
+                .iconRemove:hover {
+                    transform: scale(1.1);
+                }
+
             }
         }
 
@@ -144,4 +144,100 @@
         }
     }
 
+}
+
+.leftModal {
+
+    .imageLeftModal {
+        max-width: 200px;
+        margin: auto;
+        display: flex;
+        min-height: 300px;
+
+    }
+
+    .btnAddImage {
+        margin-top: 20px;
+
+        label {
+            padding: 10px 15px;
+            margin: auto;
+            font-size: 16px;
+            border-radius: 10px;
+            background-color: var(--orange);
+            color: #fff;
+
+            .iconModal {
+                font-size: 18px;
+                padding: 0px 2px;
+                margin: 0px 5px;
+            }
+        }
+
+
+
+        input {
+            display: none;
+        }
+    }
+}
+
+.rightModal {
+
+    .groupForm {
+        display: grid;
+        grid-template-columns: 60px auto;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 166, 0, 0.499);
+        color: #141a46;
+        margin: 10px;
+
+        span {
+            margin: 5px 0px;
+        }
+
+        .inputGroup {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0px 5px;
+        }
+
+        .inputGroup::placeholder {
+            color: rgba(255, 255, 255, 0.815);
+        }
+    }
+
+    .groupForm2 {
+        display: grid;
+        grid-template-columns: 60px auto;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: rgba(255, 166, 0, 0.499);
+        color: #141a46;
+
+        margin: 10px;
+
+        span {
+            margin: 5px 0px;
+        }
+
+        .groupText {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            padding: 5px;
+        }
+
+        .groupText::placeholder {
+            color: rgba(255, 255, 255, 0.815);
+        }
+    }
+}
+
+.errorText {
+    margin: 0;
+    color: rgb(213, 14, 14);
+    padding: 0px 10px;
 }

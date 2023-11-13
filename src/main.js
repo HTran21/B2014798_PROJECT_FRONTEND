@@ -27,7 +27,21 @@ const pinia = createPinia();
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(pinia);
 app.use(router);
-app.use(Andt)
+app.use(Andt);
+app.config.globalProperties.$filters = {
+    formatCurrency(value) {
+        if (typeof value !== 'number') {
+            return value;
+        }
+
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+
+        return formatter.format(value);
+    },
+};
 
 app.mount('#app');
 

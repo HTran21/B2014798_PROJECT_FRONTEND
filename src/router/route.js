@@ -8,6 +8,7 @@ import Register from '../views/Register/Register.vue';
 import User from '../views/User/User.vue';
 import EditProfile from '../views/EditProfile/EditProfile.vue';
 import Error from '../views/Error/Error.vue';
+import DetailProduct from '../views/DetailProduct/DetailProduct.vue';
 
 
 import Test from '../views/Test/Test.vue'
@@ -87,6 +88,14 @@ const routes = [
         path: "/profile",
 
         component: User,
+        meta: {
+            layout: DefaultLayout,
+        }
+    },
+    {
+        path: "/detail",
+
+        component: DetailProduct,
         meta: {
             layout: DefaultLayout,
         }

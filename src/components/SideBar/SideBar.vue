@@ -51,10 +51,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 import logoURL from '../../assets/coffee-cup.png';
 import { Modal, Button } from "ant-design-vue";
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 
@@ -91,6 +92,27 @@ const handleOk = () => {
 const handleCancel = () => {
     isModal.value = false;
 }
+
+// const ID_User = localStorage.getItem('ID_User');
+// const gioHang = ref([]);
+
+// const capNhatGioHang = () => {
+//     axios.get('http://localhost:3000/cart/' + ID_User)
+//         .then(res => {
+//             console.log("So luong", res.data.length)
+//             gioHang.value = res.data
+//         })
+// }
+
+// onMounted(() => {
+//     capNhatGioHang();
+// });
+
+// watchEffect(() => {
+//     const tongSoLuong = gioHang.value.reduce((total, item) => total + item.SoLuong, 0);
+//     console.log('Tổng số lượng trong giỏ hàng:', tongSoLuong);
+// })
+
 </script>
 
 <style lang="scss" scoped>

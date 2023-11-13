@@ -8,8 +8,35 @@
     }
 
     .timeOrder {
-        text-align: end;
+        margin: auto 0 auto auto;
         color: #8b8787;
         font-size: 15px;
     }
+
+    .statusOrderWait {
+        border: 1px solid #e5434381;
+        border-radius: 5px;
+        color: #e54343;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100px;
+        height: 35px;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .statusOrderSuccess {
+        border-radius: 5px;
+        color: #ffffff;
+        background-color: rgba(63, 190, 63, 0.61);
+        width: 100px;
+        height: 35px;
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
 }

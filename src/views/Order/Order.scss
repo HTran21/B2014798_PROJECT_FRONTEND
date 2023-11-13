@@ -62,6 +62,16 @@
     transform: scale(1.1);
 }
 
+.selectItem {
+    border: none;
+    background-color: orange;
+    color: #fff;
+    padding: 5px 2px;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+}
+
 .total {
     padding: 10px;
     width: 100%;
@@ -110,4 +120,14 @@
         text-decoration: none;
     }
 
+}
+
+.btnAdd {
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #39393916;
+    border-radius: 5px;
 }

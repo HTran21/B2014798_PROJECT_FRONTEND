@@ -4,7 +4,13 @@
         <div class="contentPage row">
             <div class="col-lg-8 col-sm-12">
                 <div class="list-group p-2">
+                    <div v-if="data.length === 0" class="emptyCart">
+                        <img src="../../../Illustration/emptyCart.png" alt="">
+                        <p class="textEmptyCart">Giỏ hàng trống</p>
+                    </div>
                     <div v-for="(item, index) in  data " :key="index" class="list-group-item ">
+
+
                         <div class="row">
                             <div class="col-4">
                                 <div class="infoItem row">
@@ -51,6 +57,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -177,12 +185,22 @@ const handleGiam = (item) => {
 }
 
 const handleTang = (item) => {
+    idDrink.value = item.MSHH[0]._id;
     idCart.value = item._id;
-    item.SoLuong += 1;
+    const SoLuongHang = item.MSHH[0].SoLuongHang;
+
+    // item.SoLuong += 1;
+    item.SoLuong = Math.min(item.SoLuong + 1, SoLuongHang);
+
     numberCup.value = item.SoLuong;
     console.log("ID Item", idDrink.value);
     console.log("So Luong", numberCup.value);
-    axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup })
+    console.log("So Luong hang trong kho", item.MSHH[0].SoLuongHang);
+    if (numberCup.value = SoLuongHang) {
+        toast.error("Số lượng thức uống không đủ");
+    }
+
+    axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
         .then(res => {
             if (res.data.error) {
                 toast.error(res.data.error)
@@ -191,7 +209,24 @@ const handleTang = (item) => {
                 fetchData();
             }
         })
-        .catch((err) => console.log(err))
+    //         .catch((err) => console.log(err))
+    // if (numberCup.value > item.SoLuong) {
+    //     toast.error("Số lượng thức uống không đủ");
+    // }
+    // else {
+    //     axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
+    //         .then(res => {
+    //             if (res.data.error) {
+    //                 toast.error(res.data.error)
+    //             }
+    //             else {
+    //                 fetchData();
+    //             }
+    //         })
+    //         .catch((err) => console.log(err))
+    // }
+
+
 
 }
 
@@ -213,21 +248,35 @@ const removeCart = (item) => {
 // Dat hang
 const datHang = async () => {
     try {
-        axios.post('http://localhost:3000/order', {
-            MSKH: ID_User,
-            TongTien: totalMoney,
-            ChiTietGioHang: data.value,
-        })
-            .then(res => {
-                toast.success(res.data.message);
-                fetchData();
+
+        if (data.value.length === 0) {
+            toast.error("Giỏ hàng trống")
+        }
+        else {
+            axios.post('http://localhost:3000/order', {
+                MSKH: ID_User,
+                TongTien: totalMoney,
+                ChiTietGioHang: data.value,
             })
+                .then(res => {
+                    toast.success(res.data.message);
+                    fetchData();
+                })
+                .catch((err) => console.log(err))
+        }
+
     }
     catch (error) {
         console.log('Lỗi khi đặt hàng', error)
     }
 }
 
+
+const hanldeCheck = () => {
+    if (data && data.value.length) {
+        console.log("Data", data.value.length);
+    }
+}
 
 
 </script>

@@ -15,6 +15,9 @@
                                 {{ item.SoLuong }}
                                 <button class="btnquantity" @click="handleTang(item)">+</button>
                             </div>
+
+                            <p class="text-center tonKho"> {{ item.SoLuongHang }}</p>
+
                         </div>
                         <div class="rightItem">
                             <div class="titleItem">
@@ -158,6 +161,7 @@ const addToCart = (item) => {
                 }
                 else {
                     handleReset();
+                    fetchData();
                     toast.success(res.data.message);
 
                 }
@@ -173,7 +177,11 @@ const handleGiam = (item) => {
     item.SoLuong = Math.max(item.SoLuong - 1, 0);
 }
 const handleTang = (item) => {
-    item.SoLuong += 1;
+    item.SoLuong = Math.min(item.SoLuong + 1, item.SoLuongHang);
+    if (item.SoLuong === item.SoLuongHang) {
+        toast.error("Số lượng thức uống không đủ")
+    }
+
 }
 
 </script>

@@ -131,3 +131,19 @@
     background-color: #39393916;
     border-radius: 5px;
 }
+
+.emptyCart {
+    margin: auto;
+}
+
+.emptyCart img {
+    width: 150px;
+    margin: auto;
+    display: flex;
+}
+
+.textEmptyCart {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}

@@ -74,20 +74,20 @@
 
 .accept {
     border-radius: 50%;
-    border: 2px solid blue;
+    border: 2px solid rgb(8, 172, 8);
     width: 30px;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: blue;
+    color: rgb(8, 172, 8);
     margin-right: 5px;
     transition: 0.5s;
 }
 
 .accept:hover {
     transform: scale(1.05);
-    box-shadow: 0px 0px 5px rgba(0, 0, 255, 0.436);
+    box-shadow: 0px 0px 5px rgba(20, 224, 129, 0.436);
 }
 
 .reject {

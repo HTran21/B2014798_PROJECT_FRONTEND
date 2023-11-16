@@ -21,15 +21,15 @@
                 <span class="material-icons"><i class="fa-solid fa-bell-concierge"></i></span>
                 <span class="text">Menu</span>
             </router-link>
-            <router-link to="/order" class="button">
+            <router-link to="" class="button">
                 <span class="material-icons"><i class="fa-solid fa-bookmark icon"></i></span>
-                <span class="text">Oders <span class="numberOrders">10</span></span>
+                <span class="text">Oders</span>
             </router-link>
-            <router-link to="/history" class="button">
+            <router-link to="" class="button">
                 <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
                 <span class="text">History</span>
             </router-link>
-            <router-link to="/profile" class="button">
+            <router-link to="" class="button">
                 <span class="material-icons"><i class="fa-solid fa-user"></i></span>
                 <span class="text">Profile</span>
             </router-link>

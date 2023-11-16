@@ -23,7 +23,7 @@
             </router-link>
             <router-link to="/order" class="button">
                 <span class="material-icons"><i class="fa-solid fa-bookmark icon"></i></span>
-                <span class="text">Oders <span class="numberOrders">10</span></span>
+                <span class="text">Oders</span>
             </router-link>
             <router-link to="/history" class="button">
                 <span class="material-icons"><i class="fa-solid fa-clock"></i></span>

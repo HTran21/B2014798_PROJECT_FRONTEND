@@ -5,7 +5,7 @@
             <div class="col-lg-8 col-sm-12">
                 <div class="list-group p-2">
                     <div v-if="data.length === 0" class="emptyCart">
-                        <img src="../../../Illustration/emptyCart.png" alt="">
+                        <img src="../../../public/Illustration/empty.png" alt="">
                         <p class="textEmptyCart">Giỏ hàng trống</p>
                     </div>
                     <div v-for="(item, index) in  data " :key="index" class="list-group-item ">

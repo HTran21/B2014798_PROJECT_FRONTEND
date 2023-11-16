@@ -3,6 +3,10 @@
         <h2>Order History</h2>
         <div class="contentPage">
             <div class="list-group">
+                <div v-if="data.length === 0" class="orderEmpty">
+                    <img src="../../../public/Illustration/empty2.png" alt="">
+                    <p>Đơn hàng trống</p>
+                </div>
                 <div v-for="order in  data " :key="order._id" class="list-group-item list-group-item-action mt-3 rounded">
                     <div class="d-flex">
                         <h5>Chi tiết đơn hàng:</h5>

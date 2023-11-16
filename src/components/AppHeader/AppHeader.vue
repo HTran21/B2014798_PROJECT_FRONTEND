@@ -17,16 +17,20 @@
                     <span class="nameUser">
                         {{ username }}
                     </span>
-                    <button type="button" class="btnCart">
+                    <!-- <button type="button" class="btnCart">
                         <i class="fa-solid fa-cart-shopping m-auto"></i>
                         <span style="opacity: 0.7;"
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
                             10
                         </span>
-                    </button>
+                    </button> -->
                 </div>
                 <div v-else>
-                    <button class="btnLogin">Đăng nhập</button>
+                    <router-link to="/login" class="text-decoration-none">
+
+                        <button class="btnLogin">Đăng nhập</button>
+
+                    </router-link>
                 </div>
             </div>
 

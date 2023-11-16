@@ -98,7 +98,7 @@ const login = () => {
             }
             else {
                 const ID_User = res.data.data._id;
-                const Username = res.data.data.HoTenKH;
+                const Username = res.data.data.HoTenNV;
                 const Avatar = res.data.data.AnhDaiDien;
                 const Position = res.data.data.ChucVu;
                 const isLogin = true;

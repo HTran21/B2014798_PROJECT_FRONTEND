@@ -1,6 +1,6 @@
 <template>
     <div class="containPage">
-        <h2>Order Page</h2>
+        <h2>Giỏ hàng</h2>
         <div class="contentPage row">
             <div class="col-lg-8 col-sm-12">
                 <div class="list-group p-2">
@@ -189,44 +189,45 @@ const handleTang = (item) => {
     idCart.value = item._id;
     const SoLuongHang = item.MSHH[0].SoLuongHang;
 
-    // item.SoLuong += 1;
-    item.SoLuong = Math.min(item.SoLuong + 1, SoLuongHang);
+    // // item.SoLuong += 1;
+    // item.SoLuong = Math.min(item.SoLuong + 1, SoLuongHang);
 
-    numberCup.value = item.SoLuong;
-    console.log("ID Item", idDrink.value);
-    console.log("So Luong", numberCup.value);
-    console.log("So Luong hang trong kho", item.MSHH[0].SoLuongHang);
-    if (numberCup.value = SoLuongHang) {
+    // numberCup.value = item.SoLuong;
+    // console.log("ID Item", idDrink.value);
+    // console.log("So Luong", numberCup.value);
+    // console.log("So Luong hang trong kho", item.MSHH[0].SoLuongHang);
+    // // if (numberCup.value = SoLuongHang) {
+    // //     toast.error("Số lượng thức uống không đủ");
+    // // }
+
+    // axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
+    //     .then(res => {
+    //         if (res.data.error) {
+    //             toast.error(res.data.error)
+    //         }
+    //         else {
+    //             fetchData();
+    //         }
+    //     })
+
+    if (item.SoLuong < SoLuongHang) {
+        item.SoLuong += 1;
+        numberCup.value = item.SoLuong;
+        console.log("ID Item", idDrink.value);
+        console.log("So Luong", numberCup.value);
+        console.log("So Luong hang trong kho", item.MSHH[0].SoLuongHang);
+
+        axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
+            .then(res => {
+                if (res.data.error) {
+                    toast.error(res.data.error)
+                } else {
+                    fetchData();
+                }
+            });
+    } else {
         toast.error("Số lượng thức uống không đủ");
     }
-
-    axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
-        .then(res => {
-            if (res.data.error) {
-                toast.error(res.data.error)
-            }
-            else {
-                fetchData();
-            }
-        })
-    //         .catch((err) => console.log(err))
-    // if (numberCup.value > item.SoLuong) {
-    //     toast.error("Số lượng thức uống không đủ");
-    // }
-    // else {
-    //     axios.put('http://localhost:3000/cart/' + idCart.value, { numberCup, idDrink })
-    //         .then(res => {
-    //             if (res.data.error) {
-    //                 toast.error(res.data.error)
-    //             }
-    //             else {
-    //                 fetchData();
-    //             }
-    //         })
-    //         .catch((err) => console.log(err))
-    // }
-
-
 
 }
 

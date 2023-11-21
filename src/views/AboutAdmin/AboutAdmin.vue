@@ -2,9 +2,15 @@
 <template>
     <div class="containPage">
         <div class="titlePage d-flex">
-            <h2>Coffee Menu</h2>
+            <div class="groupSearch">
+                <input class="inputSearch" v-model="searchQuery" type="search" placeholder="Search" aria-label="Search">
+                <span @click="searchDrinks" class="iconSearch"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
             <div class="ml-auto mt-1">
-                <button @click="showModal" class="btnAdd"><i class="fa-solid fa-mug-hot"></i> Thêm</button>
+                <button v-if="isLogin" @click="showModal" class="btnAdd"><i class="fa-solid fa-mug-hot"></i> Thêm</button>
+                <router-link to="/admin/login" v-else>
+                    <button @click="showModal" class="btnAdd"><i class="fa-solid fa-mug-hot"></i> Thêm</button>
+                </router-link>
                 <a-modal style="top: 40px;" v-model:open="isModal" width="800px" title="Thêm thức uống" @ok="handleOk"
                     @cancel="handleCancel" okText="Thêm thức uống" cancelText="Đóng">
                     <form action="" enctype="multipart/form-data">
@@ -62,41 +68,7 @@
             </div>
         </div>
         <div class="contentPage">
-            <!-- <div class="row ">
-                <div class="col">
-                    <div class="item">
-                        <div class="leftItem m-auto">
-                            <img src="../../../CupCoffee/cup1.png" alt="" class="imageItem">
-
-                        </div>
-                        <div class="rightItem">
-                            <div class="titleItem">
-                                Capuchino
-                                <span class="priceItem">50.00VND</span>
-                            </div>
-                            <div class="desItem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-                                exercitationem?
-                            </div>
-                            <div class="sizeItem">
-                                Size:
-                                <input type="radio" name="sizeItem" id="sizeM" value="M">
-                                <label for="sizeM">M</label>
-                                <input type="radio" name="sizeItem" id="sizeL" value="L">
-                                <label for="sizeL">L</label>
-                            </div>
-
-                            <div class="actionItem">
-                                <i class="fa-solid fa-pen-to-square iconEdit"></i>
-                                <i class="fa-solid fa-trash iconRemove"></i>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div> -->
-            <div class="row ">
+            <div class="row " v-if="data.length > 0">
                 <div class="col" v-for="(item, index) in  data " :key="index">
                     <div class="item">
                         <div class="leftItem m-auto">
@@ -116,9 +88,9 @@
 
 
                             <div class="actionItem">
-                                <button @click="showModalEdit(item)"> <i
+                                <button @click="showModalEdit(item)" :style="`${isLogin ? '' : 'display: none'}`"> <i
                                         class="fa-solid fa-pen-to-square iconEdit"></i></button>
-                                <button @click="showModalDelete(item)">
+                                <button @click="showModalDelete(item)" :style="`${isLogin ? '' : 'display: none'}`">
                                     <i class="fa-solid fa-trash iconRemove"></i>
                                 </button>
 
@@ -129,6 +101,9 @@
                 </div>
 
 
+            </div>
+            <div v-else class="text-center" style="font-weight: bold;font-size: 18px;">
+                <p>Không tìm thấy thức uống</p>
             </div>
 
             <a-modal style="top: 40px;" v-model:open="isModalEdit" width="800px" title="Chỉnh sửa thức uống"
@@ -223,13 +198,9 @@ const desDrink = ref('');
 const image = ref();
 
 const data = ref([]);
+const searchQuery = ref('');
 
-
-const handlePageChange = (page) => {
-    currentPage.value = page;
-    // Gọi hàm fetchData để cập nhật dữ liệu cho trang mới
-    fetchData();
-};
+const isLogin = localStorage.getItem("isLogin");
 
 const fetchData = () => {
     axios.get('http://localhost:3000/product')
@@ -240,6 +211,28 @@ const fetchData = () => {
 }
 
 fetchData();
+
+const searchDrinks = () => {
+    if (searchQuery.value.trim() === '') {
+        toast.warn("Vui lòng nhập ký tự")
+    }
+    else {
+        axios.get(`http://localhost:3000/product?search=${searchQuery.value}`)
+            .then(res => {
+                if (res.data.length > 0) {
+                    data.value = res.data;
+                }
+                else {
+                    data.value = [];
+                }
+            })
+            .catch(error => {
+                console.error('Lỗi khi nhận dữ liệu từ API', error);
+            });
+    }
+
+
+}
 
 
 

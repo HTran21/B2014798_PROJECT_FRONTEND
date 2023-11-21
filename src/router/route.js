@@ -25,6 +25,10 @@ import Admin from '../views/Admin/Admin.vue';
 import RegisterAdmin from '../views/RegisterAdmin/RegisterAdmin.vue';
 import LoginAdmin from '../views/LoginAdmin/LoginAdmin.vue';
 import AboutAdmin from '../views/AboutAdmin/AboutAdmin.vue';
+import HistoryAdmin from '../views/HistoryAdmin/HistoryAdmin.vue';
+import InfoAdmin from '../views/InfoAdmin/InfoAdmin.vue';
+import EditProfileAdmin from '../views/EditProfileAdmin/EditProfileAdmin.vue';
+import Customer from '../views/Customer/Customer.vue';
 
 const routes = [
     // AuthLayout
@@ -122,6 +126,38 @@ const routes = [
         path: "/admin/about",
 
         component: AboutAdmin,
+        meta: {
+            layout: AdminLayout,
+        }
+    },
+    {
+        path: "/admin/history",
+
+        component: HistoryAdmin,
+        meta: {
+            layout: AdminLayout,
+        }
+    },
+    {
+        path: "/admin/info",
+
+        component: InfoAdmin,
+        meta: {
+            layout: AdminLayout,
+        }
+    },
+    {
+        path: "/admin/customer",
+
+        component: Customer,
+        meta: {
+            layout: AdminLayout,
+        }
+    },
+    {
+        path: "/admin/editprofile",
+
+        component: EditProfileAdmin,
         meta: {
             layout: AdminLayout,
         }

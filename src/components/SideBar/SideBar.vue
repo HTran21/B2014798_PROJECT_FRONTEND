@@ -29,7 +29,11 @@
                 <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
                 <span class="text">History</span>
             </router-link>
-            <router-link to="/profile" class="button">
+            <router-link v-if="isLogin" to="/profile" class="button">
+                <span class="material-icons"><i class="fa-solid fa-user"></i></span>
+                <span class="text">Profile</span>
+            </router-link>
+            <router-link v-else to="/login" class="button">
                 <span class="material-icons"><i class="fa-solid fa-user"></i></span>
                 <span class="text">Profile</span>
             </router-link>
@@ -58,6 +62,8 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 const router = useRouter();
+
+const isLogin = localStorage.getItem("isLogin");
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 

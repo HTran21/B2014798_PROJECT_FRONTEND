@@ -28,6 +28,8 @@
 }
 
 .infoUser {
+    display: flex;
+    margin-left: auto;
 
     .btnLogin {
         background-image: linear-gradient(to right, #FF8008 0%, #FFC837 51%, #FF8008 100%);
@@ -75,14 +77,14 @@
     }
 }
 
-@media (max-width: 780px) {
-    .groupSearch {
-        display: flex;
-        margin: 5px auto;
-    }
+// @media (max-width: 780px) {
+//     .groupSearch {
+//         display: flex;
+//         margin: 5px auto;
+//     }
 
-    .infoUser {
-        display: flex;
-        margin: auto;
-    }
-}
+//     .infoUser {
+//         display: flex;
+//         margin: auto;
+//     }
+// }

@@ -18,7 +18,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="fw-normal pb-2 desLogin">Log in as admin</div>
+                                            <div class="fw-normal pb-2 desLogin">Đăng nhập với tư cách nhân viên cửa hàng
+                                            </div>
 
                                             <div class="group">
                                                 <label for="phone"><i class="fa-solid fa-phone iconForm"></i></label>
@@ -42,8 +43,8 @@
                                                 <button class="btnPay">Login</button>
                                             </div>
 
-                                            <a class="small text-muted" href="#!">Forgot password?</a>
-                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Don't have an account?
+                                            <a class="small text-muted" href="#!">Quên mật khẩu</a>
+                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Bạn chưa có tài khoản?
                                                 <router-link to="/admin/register" class="button">
 
 

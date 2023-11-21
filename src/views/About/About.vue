@@ -2,10 +2,14 @@
 <template>
     <div class="containPage">
         <div class="titlePage">
-            <h2>Coffee Menu</h2>
+            <!-- <h2>Coffee Menu</h2> -->
+            <div class="groupSearch">
+                <input class="inputSearch" v-model="searchQuery" type="search" placeholder="Search" aria-label="Search">
+                <span @click="searchDrinks" class="iconSearch"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
         </div>
         <div class="contentPage">
-            <div class="row ">
+            <div class="row " v-if="data.length > 0">
                 <div class="col" v-for="(item, index) in  data " :key="index">
                     <div class="item">
                         <div class="leftItem">
@@ -35,63 +39,24 @@
                                 </select>
                             </div>
 
-                            <button class="btnAddToCart" @click="addToCart(item)">
+                            <button v-if="isLogin" class="btnAddToCart" @click="addToCart(item)">
                                 Add to cart
                             </button>
+                            <router-link v-else to="/login">
+                                <button class="btnAddToCart" @click="addToCart(item)">
+                                    Add to cart
+                                </button>
+                            </router-link>
+
 
                         </div>
                     </div>
+
                 </div>
-
-                <!-- <div class="col">
-                    <div class="item">
-                        <div class="leftItem">
-                            <img src="../../../CupCoffee/cup7.png" alt="" class="imageItem">
-                            <div class="numberCup">
-                                <input type="button" class="btnquantity" value="+">
-                                <input type="text" class="quantity" value="0">
-                                <input type="button" class="btnquantity" value="-">
-                            </div>
-                        </div>
-                        <div class="rightItem">
-                            <div class="titleItem">
-                                Capuchino
-                                <span class="priceItem">50.00VND</span>
-                            </div>
-                            <div class="desItem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-                                exercitationem?
-                            </div>
-                            <div class="sizeItem">
-                                Size:
-                                <input type="radio" name="sizeItem" id="sizeM" value="M">
-                                <label for="sizeM">M</label>
-                                <input type="radio" name="sizeItem" id="sizeL" value="L">
-                                <label for="sizeL">L</label>
-                            </div>
-
-                            <button class="btnAddToCart">
-                                Add to cart
-                            </button>
-
-                        </div>
-                    </div>
-                </div> -->
             </div>
-            <!-- <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul> -->
+            <div v-else class="textNotFound">
+                Không tìm thấy đồ uống
+            </div>
         </div>
     </div>
 </template>
@@ -102,6 +67,9 @@ import axios from 'axios';
 import { toast } from 'vue3-toastify';
 
 const data = ref([]);
+const searchQuery = ref('');
+
+const isLogin = localStorage.getItem("isLogin");
 
 
 const fetchData = () => {
@@ -113,27 +81,42 @@ const fetchData = () => {
                 SoLuong: 0,
                 Size: '',
             }))
-            // data.value = Object.values(res.data);
-
-
-
-
         })
         .catch(error => {
             console.error('Lỗi khi nhận dữ liệu từ API', error);
         });
-    // .then(res => {
-    //      data.value = res.data;
-
-    //     console.log(res.data)
-    // })
-    // .catch((err) => console.log(err))
 }
 
 fetchData();
 
+const searchDrinks = () => {
+    if (searchQuery.value.trim() === '') {
+        toast.warn("Vui lòng nhập ký tự")
+    }
+    else {
+        axios.get(`http://localhost:3000/product?search=${searchQuery.value}`)
+            .then(res => {
+                if (res.data.length > 0) {
+                    console.log("Data search", res.data)
+                    data.value = res.data;
+                    data.value = res.data.map(item => ({
+                        ...item,
+                        SoLuong: 0,
+                        Size: '',
+                    }))
+                }
+                else {
+                    data.value = [];
+                }
+            })
+            .catch(error => {
+                console.error('Lỗi khi nhận dữ liệu từ API', error);
+            });
+    }
 
-// console.log(data.value)
+
+}
+
 const idDrink = ref('');
 const numberCup = ref(0);
 const sizeCup = ref('')

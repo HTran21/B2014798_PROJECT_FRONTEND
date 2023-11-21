@@ -13,7 +13,7 @@
                                 <div class="card-body text-center">
                                     <img :src="imageUploadEdit" alt="avatar" class="rounded-circle img-fluid"
                                         style="width: 150px;">
-                                    <h5 class="my-3">{{ data.HoTenKH }}</h5>
+                                    <h5 class="my-3">{{ data.HoTenNV }}</h5>
                                     <p class="text-muted mb-1">Khách hàng</p>
                                     <p class="text-muted mb-4">{{ data.DiaChi }}</p>
                                     <div class="d-flex justify-content-center mb-2">
@@ -41,18 +41,6 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <!-- <div class="row">
-                                        <div class="col-sm-3 ">
-                                            <p class="lableGroup">Password</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <div class="input-group">
-
-                                                <input type="text" class="form-control inputGroup" v-model="password">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr> -->
                                     <div class="row">
                                         <div class="col-sm-3 ">
                                             <p class="lableGroup">Phone</p>
@@ -61,6 +49,22 @@
                                             <div class="input-group">
 
                                                 <input type="text" class="form-control inputGroup" v-model="phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3 ">
+                                            <p class="lableGroup">Chức vụ</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+
+                                                <select v-model="chucvu" class="selectedChucvu" name="" id="">
+                                                    <option value="">Chọn chức vụ</option>
+                                                    <option value="Quản lý">Quản lý</option>
+                                                    <option value="Nhân viên">Nhân viên</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <router-link to="/profile">
+                                <router-link to="/admin/info">
                                     <button class="btn btn-secondary m-2">Thoát</button>
                                 </router-link>
 
@@ -109,19 +113,21 @@ const name = ref('');
 const password = ref('');
 const phone = ref('');
 const address = ref('');
+const chucvu = ref('');
 
 const imageUpload = ref(null);
 const imageUploadEdit = ref();
 
 const ID_User = localStorage.getItem("ID_User")
 const fetchData = () => {
-    axios.get('http://localhost:3000/authentication/info/' + ID_User)
+    axios.get('http://localhost:3000/authentication/info/admin/' + ID_User)
         .then(res => {
             console.log("Data", res.data)
             data.value = res.data;
-            name.value = res.data.HoTenKH;
+            name.value = res.data.HoTenNV;
             password.value = res.data.Password;
             phone.value = res.data.SoDienThoai;
+            chucvu.value = res.data.ChucVu;
             address.value = res.data.DiaChi;
             imageUploadEdit.value = `http://localhost:3000/${res.data.AnhDaiDien}`
         })
@@ -137,12 +143,14 @@ const handleImageUpdate = (e) => {
 }
 
 const handleSave = () => {
+    console.log("ID_ADMIN", ID_User);
     const formData = new FormData();
     formData.append('image', imageUpload.value);
     formData.append('name', name.value);
     formData.append('phone', phone.value);
+    formData.append('chucvu', chucvu.value);
     formData.append('address', address.value);
-    axios.put('http://localhost:3000/authentication/edit/' + ID_User, formData)
+    axios.put('http://localhost:3000/authentication/edit/admin/' + ID_User, formData)
         .then(res => {
             if (res.data.error) {
                 toast.error(res.data.error)
@@ -159,5 +167,5 @@ const handleSave = () => {
 
 </script>
 <style lang="scss" scoped>
-@import'./EditProfile.scss';
+@import'./EditProfileAdmin.scss';
 </style>

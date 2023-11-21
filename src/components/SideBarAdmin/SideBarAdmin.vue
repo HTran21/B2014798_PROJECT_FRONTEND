@@ -21,15 +21,19 @@
                 <span class="material-icons"><i class="fa-solid fa-bell-concierge"></i></span>
                 <span class="text">Menu</span>
             </router-link>
-            <router-link to="" class="button">
-                <span class="material-icons"><i class="fa-solid fa-bookmark icon"></i></span>
-                <span class="text">Oders</span>
+            <router-link to="/admin/customer" class="button">
+                <span class="material-icons"><i class="fa-solid fa-users"></i></span>
+                <span class="text">Customer</span>
             </router-link>
-            <router-link to="" class="button">
+            <router-link to="/admin/history" class="button">
                 <span class="material-icons"><i class="fa-solid fa-clock"></i></span>
                 <span class="text">History</span>
             </router-link>
-            <router-link to="" class="button">
+            <router-link v-if="isLogin" to="/admin/info" class="button">
+                <span class="material-icons"><i class="fa-solid fa-user"></i></span>
+                <span class="text">Profile</span>
+            </router-link>
+            <router-link v-else to="/admin/login" class="button">
                 <span class="material-icons"><i class="fa-solid fa-user"></i></span>
                 <span class="text">Profile</span>
             </router-link>
@@ -57,6 +61,8 @@ import { Modal, Button } from "ant-design-vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
+const isLogin = localStorage.getItem("isLogin");
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 

@@ -18,7 +18,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="fw-normal pb-2 desLogin">Create an account to use the service</div>
+                                            <div class="fw-normal pb-2 desLogin">Tạo tài khoản để sử dụng dịch vụ</div>
 
                                             <div class="group">
                                                 <label for="phone"><i class="fa-solid fa-phone iconForm"></i></label>
@@ -64,7 +64,7 @@
                                             <div class="pt-1 mb-4">
                                                 <button class="btnPay" type="submit">Register</button>
                                             </div>
-                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Do you have an account?
+                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Bạn đã có tài khoản?
                                                 <router-link to="/login" class="button">
 
 

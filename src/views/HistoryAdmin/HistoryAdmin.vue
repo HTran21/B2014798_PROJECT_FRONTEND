@@ -1,7 +1,7 @@
 <template>
     <div class="containPage">
-        <h2>Lịch sử đơn hàng</h2>
-        <div class="contentPage">
+        <h2>Đơn hàng đã duyệt</h2>
+        <div class="contentPage" :style="`${isLogin ? '' : 'display: none'}`">
             <div class="list-group">
                 <div v-if="data.length === 0" class="orderEmpty">
                     <img src="../../../public/Illustration/empty2.png" alt="">
@@ -9,6 +9,12 @@
                 </div>
                 <div v-for="order in  sortedOrders " :key="order._id"
                     class="list-group-item list-group-item-action mt-3 rounded">
+                    <div class="infoUser mb-2">
+                        <h5>Thông tin khách hàng:</h5>
+                        <p class="d-inline">Họ tên: {{ order._doc.MSKH[0].HoTenKH }}</p>
+                        <p class="ml-3 d-inline">Số điện thoại: {{ order._doc.MSKH[0].SoDienThoai }}</p>
+                        <p class="ml-3 d-inline">Địa chỉ: {{ order._doc.MSKH[0].DiaChi }}</p>
+                    </div>
                     <div class="d-flex">
                         <h5>Chi tiết đơn hàng:</h5>
                         <a-dropdown class="ml-auto" v-if="order._doc.TrangthaiDH === 'W'">
@@ -112,7 +118,7 @@
                             <p>Tổng tiền: {{ tinhTongTien(order.ChiTietDatHang).toLocaleString("vi-VN") }}VND</p>
                             <p class="d-inline">Thời gian đặt hàng: {{ formatDateTime(order._doc.NgayDH) }}</p>
                             <p class="d-inline ml-3" v-if="order._doc.NgayDH !== null">Thời gian nhận hàng: {{
-                                formatDateTime(order._doc.NgayDH) }}
+                                formatDateTime(order._doc.NgayGH) }}
                             </p>
                         </div>
 
@@ -139,18 +145,16 @@ import moment from 'moment';
 
 const data = ref([]);
 
-const ID_User = localStorage.getItem("ID_User");
+const isLogin = localStorage.getItem("isLogin");
 
 const fetchData = () => {
-    axios.get("http://localhost:3000/order/" + ID_User)
+    axios.get("http://localhost:3000/order/admin")
         .then(res => {
             console.log("Data", res);
             data.value = res.data;
         })
         .catch((err) => console.log(err))
 }
-
-
 
 
 const formatDateTime = (dateTime) => {
@@ -164,6 +168,7 @@ const sortedOrders = computed(() => {
         return new Date(b._doc.NgayDH) - new Date(a._doc.NgayDH);
     });
 });
+
 
 const dataDetail = ref([]);
 const sizeDetail = ref('');
@@ -255,5 +260,5 @@ const okButtonHidden = {
 </script>
 
 <style lang="scss" scoped>
-@import'./History.scss';
+@import'./HistoryAdmin.scss';
 </style>

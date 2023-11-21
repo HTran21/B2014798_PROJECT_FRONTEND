@@ -23,7 +23,9 @@
                                     veritatis? Dicta facilis sint aliquid ipsum atque?
                                 </p>
 
-                                <button class="btnReadMore">Learn more</button>
+                                <router-link to="/about" class="text-decoration-none">
+                                    <button class="btnReadMore">Order now</button>
+                                </router-link>
                             </div>
 
                             <div class="col-lg-6 mb-5 mb-lg-0">

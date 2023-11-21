@@ -11,24 +11,24 @@
                             <div class="card">
                                 <div class="rounded-top text-white d-flex flex-row bgProfile">
                                     <div class="mt-5 d-flex flex-column" style="width: 150px; margin-left: 20px;">
-                                        <img v-if="data.AnhDaiDien != undefined"
-                                            :src="'http://localhost:3000/' + data.AnhDaiDien"
+                                        <img v-if="data.AnhDaiDien" :src="'http://localhost:3000/' + data.AnhDaiDien"
                                             alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                             style="width: 150px; z-index: 1">
-                                        <router-link to="/editprofile" style="z-index: 1;" class="btn btn-outline-dark">
+                                        <router-link to="/admin/editprofile" style="z-index: 1;"
+                                            class="btn btn-outline-dark">
                                             <button type="button" data-mdb-ripple-color="dark">
                                                 Chỉnh sửa
                                             </button>
                                         </router-link>
                                     </div>
                                     <div class="" style="margin-top: 130px; margin-left: 10px;">
-                                        <h5>{{ data.HoTenKH }}</h5>
+                                        <h5>{{ data.HoTenNV }}</h5>
                                         <p>{{ data.DiaChi }}</p>
                                     </div>
                                 </div>
                                 <div class="p-4 text-black" style="background-color: #f8f9fa;">
                                     <div class="d-flex justify-content-end text-center py-1">
-                                        Khách hàng
+                                        {{ data.ChucVu }}
                                     </div>
                                 </div>
                                 <div class="card-body text-black">
@@ -41,7 +41,7 @@
                                                         <p class="mb-0">Họ tên</p>
                                                     </div>
                                                     <div class="col-sm-9">
-                                                        <p class="text-muted mb-0">{{ data.HoTenKH }}</p>
+                                                        <p class="text-muted mb-0">{{ data.HoTenNV }}</p>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -88,7 +88,7 @@ const data = ref({});
 
 const ID_User = localStorage.getItem("ID_User")
 const fetchData = () => {
-    axios.get('http://localhost:3000/authentication/info/' + ID_User)
+    axios.get('http://localhost:3000/authentication/info/admin/' + ID_User)
         .then(res => {
             console.log("Data", res.data)
             data.value = res.data;
@@ -99,5 +99,5 @@ fetchData();
 
 </script>
 <style lang="scss" scoped>
-@import'./User.scss';
+@import'./InfoAdmin.scss';
 </style>

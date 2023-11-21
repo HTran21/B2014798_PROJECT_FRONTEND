@@ -18,8 +18,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="fw-normal pb-2 desLogin">Sign into your
-                                                account</div>
+                                            <div class="fw-normal pb-2 desLogin">Đăng nhập bằng tài khoản của bạn</div>
 
                                             <div class="group">
                                                 <label for="phone"><i class="fa-solid fa-phone iconForm"></i></label>
@@ -43,8 +42,8 @@
                                                 <button class="btnPay">Login</button>
                                             </div>
 
-                                            <a class="small text-muted" href="#!">Forgot password?</a>
-                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Don't have an account?
+                                            <a class="small text-muted" href="#!">Quên mật khẩu?</a>
+                                            <p class="mb-1 pb-lg-2" style="color: #393f81;">Bạn chưa có tài khoản
                                                 <router-link to="/register" class="button">
 
 

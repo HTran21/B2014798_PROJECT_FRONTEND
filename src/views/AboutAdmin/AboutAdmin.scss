@@ -241,3 +241,29 @@
     color: rgb(213, 14, 14);
     padding: 0px 10px;
 }
+
+.groupSearch {
+    background-color: #cdc3c373;
+    border-radius: 20px;
+    width: 283px;
+    margin-bottom: 18px;
+
+
+
+    .inputSearch {
+        padding: 7px 13px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+
+    }
+
+    .iconSearch {
+        background-color: var(--orange);
+        color: var(--light);
+        padding: 10px 23px;
+        border-radius: 20px;
+    }
+}

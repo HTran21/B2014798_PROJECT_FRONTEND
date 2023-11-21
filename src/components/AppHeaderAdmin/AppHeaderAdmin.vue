@@ -6,12 +6,7 @@
 <template>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <form class="groupSearch" role="search">
-                <input class="inputSearch" type="search" placeholder="Search" aria-label="Search">
-                <span class="iconSearch"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </form>
-            <div class="infoUser">
-                <!-- <div class="btnLogin">Login</div> -->
+            <div class="infoUser d-flex ml-auto">
                 <div v-if="isUserLoggedIn()" class="contentInfo">
                     <img :src="imageUser" class="imageUser" alt="">
                     <span class="nameUser ml-1">
@@ -23,7 +18,11 @@
                     </span>
                 </div>
                 <div v-else>
-                    <button class="btnLogin">Đăng nhập</button>
+                    <router-link to="/admin/login" class="text-decoration-none">
+
+                        <button class="btnLogin">Đăng nhập</button>
+
+                    </router-link>
                 </div>
             </div>
 

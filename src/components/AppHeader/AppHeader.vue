@@ -6,10 +6,10 @@
 <template>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <form class="groupSearch" role="search">
+            <!-- <form class="groupSearch" role="search">
                 <input class="inputSearch" type="search" placeholder="Search" aria-label="Search">
                 <span class="iconSearch"><i class="fa-solid fa-magnifying-glass"></i></span>
-            </form>
+            </form> -->
             <div class="infoUser">
                 <!-- <div class="btnLogin">Login</div> -->
                 <div v-if="isUserLoggedIn()" class="contentInfo">
